@@ -30,24 +30,54 @@ document.addEventListener('DOMContentLoaded', function() {
 })
 
 function docNameTypeSelector(){
-    docNameGenerator.style.display = 'block;'
+    docNameGenerator = document.querySelectorAll('.docGenerator')
+    console.log(docNameGenerator)
+    //docNameGenerator.style.display = 'flex'
+    for (let i = 0; i < docNameGenerator.length; i++) {
+        const element = docNameGenerator[i];
+        // Update the display style of each element to be "block"
+        element.style.display = 'flex';
+      }
+
+    if(docTypeSelector.value === 'Document'){
+        docGeneratorDocument = document.querySelectorAll('.docGeneratorDocument')
+        console.log(docGeneratorDocument)
+        //docNameGenerator.style.display = 'flex'
+        for (let i = 0; i < docGeneratorDocument.length; i++) {
+            const element = docGeneratorDocument[i];
+            // Update the display style of each element to be "block"
+            element.style.display = 'list-item';
+      }
+    } else if(docTypeSelector.value === 'Drawing'){
+        docGeneratorDrawing = document.querySelectorAll('.docGeneratorDrawing')
+        console.log(docGeneratorDrawing)
+        //docNameGenerator.style.display = 'flex'
+        for (let i = 0; i < docGeneratorDrawing.length; i++) {
+            const element = docGeneratorDrawing[i];
+            // Update the display style of each element to be "block"
+            element.style.display = 'list-item';
+      }
+    }
+
 }
 
 function generateDocName(){
-    ContractCode = document.querySelector('#ProjectPin_input')
     console.log(ContractCode.value)
-    OriginatorCode = document.querySelector("#Originator_input")
     console.log(OriginatorCode.value)
-    vFunction = document.querySelector('#Function_input')
     console.log(vFunction.value)
-    LocationCode = document.querySelector("#Spatial_input")
     console.log(LocationCode.value)
-    DocType = document.querySelector("#DocType_input")
-    console.log(DocType.value)
-    SubjectDiscipline = document.querySelector("#Discipline_input")
+    console.log(DocTypeDocument.value)
+    console.log(DocTypeDrawing.value)
     console.log(SubjectDiscipline.value)
-    const varDocNumber_noNum = ContractCode.value+"-"+LocationCode.value+"-"+vFunction.value+"-"+DocType.value+"-"+SubjectDiscipline.value+"-"+OriginatorCode.value
-    console.log(varDocNumber_noNum)
+
+    if(docTypeSelector.value === 'Document'){
+        varDocNumber_noNum = ContractCode.value+"-"+LocationCode.value+"-"+vFunction.value+"-"+DocTypeDocument.value
+        console.log(varDocNumber_noNum)
+    }else if(docTypeSelector.value === 'Drawing') {
+        varDocNumber_noNum = ContractCode.value+"-"+LocationCode.value+"-"+DocTypeDrawing.value+"-"+SubjectDiscipline.value+"-"+OriginatorCode.value
+        console.log(varDocNumber_noNum)
+    }
+
 
     const PartialMatch = filelist.filter(item => item.includes(varDocNumber_noNum));
 
@@ -78,15 +108,15 @@ function generateDocName(){
         console.log(`No partial match '${varDocNumber_noNum}' found in the array.`);
         newNumber = "001"
     }
+
     const varDocNumber_NoSheetNumber = varDocNumber_noNum+"-"+newNumber
     const PartialMatch2 = filelist.filter(item => item.includes(varDocNumber_NoSheetNumber));
 
-    console.log(DocType.options[DocType.selectedIndex].text)
-    var vDocType = DocType.options[DocType.selectedIndex].text
-    console.log(PartialMatch2)
-    console.log(vDocType)
-    if (PartialMatch2.length >=1) {
-        if (vDocType.includes("dwg")) {
+    if(docTypeSelector.value === 'Drawing'){
+
+        console.log(PartialMatch2)
+
+        if (PartialMatch2.length >=1) {
             console.log(`Partial match '${varDocNumber_noNum}' found in the array.`);
             const partialMatchesArray2 = PartialMatch2.map(match => match.replace(/\.[^.]+$/, ''));
             console.log('Partial matches array:', partialMatchesArray2);
@@ -109,21 +139,15 @@ function generateDocName(){
             console.log('Next number with padded zeros and fixed length 2:', paddedNextNumber);
 
             newDrawingNumber = paddedNextNumber;
+        }else{
+            newDrawingNumber = "01"
+        }
+        varDocNumber_Full = varDocNumber_noNum+"-"+newNumber+"-"+newDrawingNumber
 
-    }else if (vDocType.includes("Doc")){
-        console.log(`No partial match '${varDocNumber_noNum}' found in the array.`);
-        newDrawingNumber = "00"
-    }
-    else{
-        newDrawingNumber = "01"
-    }}else if (vDocType.includes("dwg")) {
-        newDrawingNumber = "01"
-    }else if (vDocType.includes("Doc")) {
-        newDrawingNumber = "00"
+    }else if(docTypeSelector.value === 'Document') {
+        varDocNumber_Full = varDocNumber_noNum+"-"+newNumber
     }
 
-
-    const varDocNumber_Full = varDocNumber_noNum+"-"+newNumber+"-"+newDrawingNumber
     console.log('New Document Number: ', varDocNumber_Full);
     document.getElementById("DocNumber").value = varDocNumber_Full.toString()
 
@@ -216,18 +240,32 @@ function generateDocName(){
         dropdownContainerDiscipline.appendChild(optionElement);
     });
 
-    arrayDocType = namingstandard.find(item => item.name === "Doc-Dwg Type")
-    arrayDocType = arrayDocType ? arrayDocType.options : [];
+    arrayDocTypeDrawing = namingstandard.find(item => item.name === "Doc-Dwg Type")
+    arrayDocTypeDrawing = arrayDocTypeDrawing ? arrayDocTypeDrawing.options : [];
 
     // Get the dropdown container
-    const dropdownContainerDocType = document.getElementById("DocType_input");
-    console.log(arrayDocType)
+    const dropdownContainerDocTypeDrawing = document.getElementById("DocTypeDrawing_input");
+    console.log(arrayDocTypeDrawing)
     // Create and append options to the dropdown
-    arrayDocType.forEach(option => {
+    arrayDocTypeDrawing.forEach(option => {
         const optionElement = document.createElement("option");
         optionElement.value = option.value;
         optionElement.textContent = `${option.value} - ${option.description}`;
-        dropdownContainerDocType.appendChild(optionElement);
+        dropdownContainerDocTypeDrawing.appendChild(optionElement);
+    });
+
+    arrayDocTypeDocument = namingstandard.find(item => item.name === "Doc-Dwg Type")
+    arrayDocTypeDocument = arrayDocTypeDocument ? arrayDocTypeDocument.options : [];
+
+    // Get the dropdown container
+    const dropdownContainerDocTypeDocument = document.getElementById("DocTypeDocument_input");
+    console.log(arrayDocTypeDrawing)
+    // Create and append options to the dropdown
+    arrayDocTypeDocument.forEach(option => {
+        const optionElement = document.createElement("option");
+        optionElement.value = option.value;
+        optionElement.textContent = `${option.value} - ${option.description}`;
+        dropdownContainerDocTypeDocument.appendChild(optionElement);
     });
 
 }

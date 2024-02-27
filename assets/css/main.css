@@ -84,8 +84,6 @@ h1, h3 {
 }
 
 .form-dropdown{
-
-
     flex-direction: column;
 }
 .form-dropdown option {
@@ -441,3 +439,12 @@ input[type="submit"]:active {
         color: white;
       }
       
+      .docGenerator{
+        display: none;
+      }
+      .docGeneratorDrawing{
+        display: none;
+      }
+      .docGeneratorDocument{
+        display: none;
+      }

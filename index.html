@@ -11,7 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="icon" href="./assets/media/Keltbray-logo_single.png" type="image/x-icon">
 
-    <title>Digital Delivery Hub - TEST ACC File Uploader</title>
+    <title>Digital Delivery Hub - Peterhead ACC File Uploader</title>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
             <h2>Keltbray <br>DD Hub</h2>
         </div>
         <div class="header-section">
-            <h1>TEST ACC File Uploader</h1>
+            <h1>Peterhead ACC File Uploader</h1>
         </div>
         <div class="header-section">
             <h3></h3>
@@ -40,12 +40,12 @@
                   <div class="form-container">
                     <h3 class="form-heading">Step 1. Generate file name</h3>
                     <label class="form-label form-label-top form-label-auto" id="label_folder" for="input_folder" aria-hidden="false"> Select file type </label>
-                    <select class="form-dropdown" id="input_file_type" onchange="">
+                    <select class="form-dropdown" id="input_file_type" onchange="docNameTypeSelector()">
                       <option value="">Select a file type...</option>
                       <option value="Document">Document</option>
                       <option value="Drawing">Drawing</option>
                     </select>
-                      <ul class="form-step1" id="docGenerator">
+                      <ul class="form-step1 docGenerator">
                       <!-- Project PIN Input-->
                           <li class="form-line" data-type="control_dropdown" id="id_5"><label class="form-label form-label-top form-label-auto" id="label_5" for="input_5" aria-hidden="false"> Contractor Codes </label>
                             <div id="cid_5" class="form-input-wide" data-layout="full">
@@ -59,25 +59,31 @@
                             </select> </div>
                           </li>
                           <!-- Function Input-->
-                          <li class="form-line" data-type="control_dropdown" id="id_5"><label class="form-label form-label-top form-label-auto" id="label_5" for="input_5" aria-hidden="false"> Function </label>
+                          <li class="form-line docGeneratorDocument" data-type="control_dropdown" id="id_5"><label class="form-label form-label-top form-label-auto" id="label_5" for="input_5" aria-hidden="false"> Function </label>
                             <div id="cid_5" class="form-input-wide" data-layout="full">
                             <select class="form-dropdown" id="Function_input" name="" data-component="ProjectRole" aria-label="Function">
                             </select> </div>
                           </li>
-                          <!-- Discipline Input-->
-                          <li class="form-line" data-type="control_dropdown" id="id_5"><label class="form-label form-label-top form-label-auto" id="label_5" for="input_5" aria-hidden="false"> Doc-Dwg Type </label>
+                          <!-- Document Type Input-->
+                          <li class="form-line docGeneratorDocument" data-type="control_dropdown" id="id_5"><label class="form-label form-label-top form-label-auto" id="label_5" for="input_5" aria-hidden="false"> Doc-Dwg Type </label>
                             <div id="cid_5" class="form-input-wide" data-layout="full">
-                            <select class="form-dropdown" id="DocType_input" name="" data-component="ProjectRole" aria-label="Discipline">
+                            <select class="form-dropdown" id="DocTypeDocument_input" name="" data-component="ProjectRole" aria-label="Discipline">
+                            </select> </div>
+                          </li>
+                          <!-- Drawing Type Input-->
+                          <li class="form-line docGeneratorDrawing" data-type="control_dropdown" id="id_5"><label class="form-label form-label-top form-label-auto" id="label_5" for="input_5" aria-hidden="false"> Doc-Dwg Type </label>
+                            <div id="cid_5" class="form-input-wide" data-layout="full">
+                            <select class="form-dropdown" id="DocTypeDrawing_input" name="" data-component="ProjectRole" aria-label="Discipline">
                             </select> </div>
                           </li>
                           <!-- Discipline Input-->
-                          <li class="form-line" data-type="control_dropdown" id="id_5"><label class="form-label form-label-top form-label-auto" id="label_5" for="input_5" aria-hidden="false"> Subject &amp; Discipline Code </label>
+                          <li class="form-line docGeneratorDrawing" data-type="control_dropdown" id="id_5"><label class="form-label form-label-top form-label-auto" id="label_5" for="input_5" aria-hidden="false"> Subject &amp; Discipline Code </label>
                             <div id="cid_5" class="form-input-wide" data-layout="full">
                             <select class="form-dropdown" id="Discipline_input" name="" data-component="ProjectRole" aria-label="Discipline">
                             </select> </div>
                           </li>
                           <!-- Originator Input-->
-                          <li class="form-line" data-type="control_dropdown" id="id_5"><label class="form-label form-label-top form-label-auto" id="label_5" for="input_5" aria-hidden="false"> Originator Code </label>
+                          <li class="form-line docGeneratorDrawing" data-type="control_dropdown" id="id_5"><label class="form-label form-label-top form-label-auto" id="label_5" for="input_5" aria-hidden="false"> Originator Code </label>
                               <div id="cid_5" class="form-input-wide" data-layout="full">
                               <select class="form-dropdown" id="Originator_input" name="" data-component="ProjectRole" aria-label="Originator">
                               </select> </div>
@@ -88,7 +94,7 @@
                                 </div>
                           </li>
                         </ul>
-                    <div class="form-step1">
+                    <div class="form-step1 docGenerator">
                       <!-- Generate Button -->
                       <div id="cid_2" class="form-button" data-layout="full">
                           <button type="button" id="generate_btn" class="submitButton" onclick="generateDocName()">Generate File Name</button>

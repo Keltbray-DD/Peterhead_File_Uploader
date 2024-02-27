@@ -56,6 +56,15 @@ let arraySequenceCode=[];
 let arraySubjectDiscipline=[];
 let arrayDocType =[];
 let SubjectDiscipline
+let docTypeSelector
+let ContractCode
+let OriginatorCode
+let vFunction
+let LocationCode
+let DocTypeDocument
+let DocTypeDrawing
+let varDocNumber_noNum
+let varDocNumber_Full
 
 let objectKeyShort
 let objectKeyLong
@@ -83,13 +92,23 @@ let fileTemplate
 let reloadButton
 let loadingScreen
 
+
+
 document.addEventListener('DOMContentLoaded', function() {
     uploadbutton = document.getElementById('viewfile_btn');
     originSelectionDropdown = document.getElementById('input_file_origin');
     droparea = document.getElementById('drop-area')
     templateDropdwon = document.getElementById('templatesDropdown');
     reloadButton = document.getElementById('reloadButton');
+    docTypeSelector = document.getElementById('input_file_type')
 
+    ContractCode = document.querySelector('#ProjectPin_input')
+    OriginatorCode = document.querySelector("#Originator_input")
+    vFunction = document.querySelector('#Function_input')
+    LocationCode = document.querySelector("#Spatial_input")
+    DocTypeDocument = document.querySelector("#DocTypeDocument_input")
+    DocTypeDrawing = document.querySelector("#DocTypeDrawing_input")
+    SubjectDiscipline = document.querySelector("#Discipline_input")
 
     // Add a click event listener to the button
     reloadButton.addEventListener('click', function() {
