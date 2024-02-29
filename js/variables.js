@@ -7,9 +7,13 @@ const templateFolderID = "urn:adsk.wipemea:fs.folder:co.l8r6vS_BQ_GkrVQzgTrQzw" 
 
 const uploadfolders = [
     {folderName:"KELTBRAY - WIP",folderID:"urn:adsk.wipemea:fs.folder:co.TTt9faNOTnGEWOC8ji055g"},
+    {folderName:"ALP - ALPHA FENCING - WIP",folderID:"urn:adsk.wipemea:fs.folder:co.rDjdwZHFSp6Ee1BQ5rl3CQ"}, // 0D.SUB-CONTRACTORs - ALP  WIP
     {folderName:"BHS - BAKER HICKS - WIP",folderID:"urn:adsk.wipemea:fs.folder:co.C7KA83Y2Q-KlPVGuXZXS3Q"}, // 0D.SUB-CONTRACTORs - BHS - BAKER HICKS  WIP
+    {folderName:"CLE - CLEVELAND - WIP",folderID:"urn:adsk.wipemea:fs.folder:co.L0VYCzIuRbqv0DLEHkBjtw"}, // 0D.SUB-CONTRACTORs - CLE WIP
+    {folderName:"DSC - DAVID SMITH CONTRACTORS - WIP",folderID:"urn:adsk.wipemea:fs.folder:co.sEmzYxJ-Tu2yRWVXgkJCuQ"}, // 0D.SUB-CONTRACTORs - DSC  WIP
     {folderName:"GRM - GRAMPIAN GEOTECHNICAL - WIP",folderID:"urn:adsk.wipemea:fs.folder:co.WG2nMXrER3iYLE5sSrBlKg"}, // 0D.SUB-CONTRACTORs - GRM - GRAMPIAN GEOTECHNICAL  WIP
     {folderName:"HTM - HATTON TRAFFIC MANAGEMENT - WIP",folderID:"urn:adsk.wipemea:fs.folder:co.4--FVVhGT62O7VqORc17LA"}, // 0D.SUB-CONTRACTORs - HTM - HATTON TRAFFIC MANAGEMENT  WIP
+    {folderName:"NOS - NICOL OF SKENE - WIP",folderID:"urn:adsk.wipemea:fs.folder:co.Lu6RU8hqS3qoab2zEpgSoQ"}, // 0D.SUB-CONTRACTORs - NOS - BAKER HICKS  WIP
     {folderName:"WIN - WINGATE - WIP",folderID:"urn:adsk.wipemea:fs.folder:co.PM3ASkyKTYed__3kzLcA7w"} // 0D.SUB-CONTRACTORs - WIN - WINGATE  WIP
 ]
 
@@ -32,9 +36,13 @@ const StatesList = [
 
 const searchFolders =[
     "urn:adsk.wipemea:fs.folder:co.TTt9faNOTnGEWOC8ji055g", // 0C.KELTBRAY - WIP
+    "urn:adsk.wipemea:fs.folder:co.rDjdwZHFSp6Ee1BQ5rl3CQ", // 0D.SUB-CONTRACTORs - ALP - ALPHA FENCING  WIP
     "urn:adsk.wipemea:fs.folder:co.C7KA83Y2Q-KlPVGuXZXS3Q", // 0D.SUB-CONTRACTORs - BHS - BAKER HICKS  WIP
+    "urn:adsk.wipemea:fs.folder:co.L0VYCzIuRbqv0DLEHkBjtw", // 0D.SUB-CONTRACTORs - CLE - CLEVELAND  WIP
+    "urn:adsk.wipemea:fs.folder:co.sEmzYxJ-Tu2yRWVXgkJCuQ", // 0D.SUB-CONTRACTORs - DSC - DAVID SMITH CONTRACTORS  WIP
     "urn:adsk.wipemea:fs.folder:co.WG2nMXrER3iYLE5sSrBlKg", // 0D.SUB-CONTRACTORs - GRM - GRAMPIAN GEOTECHNICAL  WIP
     "urn:adsk.wipemea:fs.folder:co.4--FVVhGT62O7VqORc17LA", // 0D.SUB-CONTRACTORs - HTM - HATTON TRAFFIC MANAGEMENT  WIP
+    "urn:adsk.wipemea:fs.folder:co.Lu6RU8hqS3qoab2zEpgSoQ", // 0D.SUB-CONTRACTORs - NOS - NICOL OF SKENE  WIP
     "urn:adsk.wipemea:fs.folder:co.PM3ASkyKTYed__3kzLcA7w", // 0D.SUB-CONTRACTORs - WIN - WINGATE  WIP
     "urn:adsk.wipemea:fs.folder:co.ouxOilcSTm2z9mimcuUQrw", // 0E.SHARED
     "urn:adsk.wipemea:fs.folder:co.1U7RIHcTQhK0MuiFVKmBBw", // 0F.CLIENT_SHARED
