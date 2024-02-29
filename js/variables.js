@@ -24,8 +24,8 @@ const StatesList = [
     { code: "A1", description: "A1 Approval Acceptance" },
     { code: "A2", description: "A2 Concept Design" },
     { code: "A3", description: "A3 Spatial Co-ordination" },
-    { code: "A4", description: "A4 Approved Accepted Construction" },
-    { code: "A5", description: "A5 Approved Accepted Construct Rec" },
+    { code: "A4", description: "A4 ApprovedAccepted Construction" },
+    { code: "A5", description: "A5 ApprovedAcceptedConstructRec" },
     { code: "A6", description: "A6 Handover Closeout" },
     { code: "A7", description: "A7 Operation End of Life" }
 ];
@@ -65,6 +65,7 @@ let DocTypeDocument
 let DocTypeDrawing
 let varDocNumber_noNum
 let varDocNumber_Full
+let ACCFileName
 
 let objectKeyShort
 let objectKeyLong
@@ -81,6 +82,7 @@ let ClassificationID
 let StatusCodeDescriptionID
 let FileDescriptionID
 let StateID
+let ClientFileNameID
 
 let fileURN
 let fileExtension
@@ -96,6 +98,9 @@ let fileTemplate
 let reloadButton
 let loadingScreen
 
+let checkbox
+let manualSequence
+let manualSequencetext
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -114,6 +119,10 @@ document.addEventListener('DOMContentLoaded', function() {
     DocTypeDrawing = document.querySelector("#DocTypeDrawing_input")
     SubjectDiscipline = document.querySelector("#Discipline_input")
 
+
+    checkbox = document.getElementById('checkbox1');
+    manualSequence = document.getElementById('manualSequence');
+    manualSequencetext = document.getElementById('manualSequencetext')
     // Add a click event listener to the button
     reloadButton.addEventListener('click', function() {
         // Reload the page

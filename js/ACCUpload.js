@@ -221,10 +221,11 @@ async function getCustomDetailsData(){
     revisionCodeID = await findObjectByName("Revision",customAttributes)
     revisionDescID = await findObjectByName("Revision Description",customAttributes)
     statusCodeID = await findObjectByName("Status",customAttributes)
-    StatusCodeDescriptionID = await findObjectByName("Status Code Description",customAttributes)
+    StatusCodeDescriptionID = await findObjectByName("Status Description",customAttributes)
     ClassificationID = await findObjectByName("Classification",customAttributes)
     FileDescriptionID = await findObjectByName("File Description",customAttributes)
     StateID = await findObjectByName("State",customAttributes)
+    ClientFileNameID = await findObjectByName("Client File Number",customAttributes)
 
     console.log(titlelineID)
     console.log(revisionCodeID)
@@ -234,6 +235,7 @@ async function getCustomDetailsData(){
     console.log(ClassificationID)
     console.log(FileDescriptionID)
     console.log(StateID)
+    console.log(ClientFileNameID)
 }
 
 async function getAccessToken(scopeInput){
@@ -639,6 +641,13 @@ async function getItemDetails(AccessToken){
 
 async function postCustomItemDetails(AccessToken){
     //console.log("SD",$("#input_StatusDesc").val())
+    let Classification
+    if($("#input_Classification").val()){
+        Classification = $("#input_Classification").val()
+    }else{
+        Classification = ""
+    }
+
     const bodyData = [
         {
             // Title Line 1
@@ -668,7 +677,7 @@ async function postCustomItemDetails(AccessToken){
         {
              // Status Description
           "id": ClassificationID.id,
-          "value": $("#input_Classification").val()
+          "value": Classification
         },
         {
              // Status Description
@@ -679,6 +688,11 @@ async function postCustomItemDetails(AccessToken){
              // Status Description
           "id": StateID.id,
           "value": $("#input_State").val()
+        },
+        {
+             // Status Description
+          "id": ClientFileNameID.id,
+          "value": $("#DocNumber").val()
         }
       ];
 
@@ -791,7 +805,7 @@ async function postCopyofItem(AccessToken,copyURN,objectKeyLong){
     }
 
 async function patchItemDetails(AccessToken){
-    const newFileName = $("#DocNumber").val()+"."+fileExtension
+    const newFileName = ACCFileName+"."+fileExtension
     const bodyData = [{
         "jsonapi": {
           "version": 1.0
@@ -871,7 +885,7 @@ function updateProgressBar(){
 function renameFile(input) {
     if (input.files && input.files.length > 0) {
         var file = input.files[0];
-        var newName = $("#DocNumber").val()+"."+fileExtension; // New filename
+        var newName = ACCFileName+"."+fileExtension; // New filename
         var newFile = new File([file], newName, { type: file.type });
 
         // Replace the original file with the renamed file in the file input

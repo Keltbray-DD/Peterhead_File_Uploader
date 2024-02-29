@@ -47,7 +47,15 @@ function docNameTypeSelector(){
             const element = docGeneratorDocument[i];
             // Update the display style of each element to be "block"
             element.style.display = 'list-item';
-      }
+        }
+        docGeneratorDrawing = document.querySelectorAll('.docGeneratorDrawing')
+            console.log(docGeneratorDrawing)
+            //docNameGenerator.style.display = 'flex'
+            for (let i = 0; i < docGeneratorDrawing.length; i++) {
+                const element = docGeneratorDrawing[i];
+                // Update the display style of each element to be "block"
+                element.style.display = 'none';
+        }
     } else if(docTypeSelector.value === 'Drawing'){
         docGeneratorDrawing = document.querySelectorAll('.docGeneratorDrawing')
         console.log(docGeneratorDrawing)
@@ -56,7 +64,15 @@ function docNameTypeSelector(){
             const element = docGeneratorDrawing[i];
             // Update the display style of each element to be "block"
             element.style.display = 'list-item';
-      }
+        }
+        docGeneratorDocument = document.querySelectorAll('.docGeneratorDocument')
+        console.log(docGeneratorDocument)
+        //docNameGenerator.style.display = 'flex'
+        for (let i = 0; i < docGeneratorDocument.length; i++) {
+            const element = docGeneratorDocument[i];
+            // Update the display style of each element to be "block"
+            element.style.display = 'none';
+        }
     }
 
 }
@@ -70,43 +86,46 @@ function generateDocName(){
     console.log(DocTypeDrawing.value)
     console.log(SubjectDiscipline.value)
 
+
     if(docTypeSelector.value === 'Document'){
-        varDocNumber_noNum = ContractCode.value+"-"+LocationCode.value+"-"+vFunction.value+"-"+DocTypeDocument.value
+        varDocNumber_noNum = ContractCode.value+"-"+LocationCode.value+"-"+vFunction.value+"-"+DocTypeDocument.value+"-00-00"
         console.log(varDocNumber_noNum)
     }else if(docTypeSelector.value === 'Drawing') {
-        varDocNumber_noNum = ContractCode.value+"-"+LocationCode.value+"-"+DocTypeDrawing.value+"-"+SubjectDiscipline.value+"-"+OriginatorCode.value
+        varDocNumber_noNum = ContractCode.value+"-"+LocationCode.value+"-00-"+DocTypeDrawing.value+"-"+SubjectDiscipline.value+"-"+OriginatorCode.value
         console.log(varDocNumber_noNum)
     }
-
-
-    const PartialMatch = filelist.filter(item => item.includes(varDocNumber_noNum));
-
-    if (PartialMatch.length >=1) {
-        console.log(`Partial match '${varDocNumber_noNum}' found in the array.`);
-        const partialMatchesArray = PartialMatch.map(match => match.replace(/\.[^.]+$/, ''));
-        console.log('Partial matches array:', partialMatchesArray);
-
-        // Extract the numbers from the filenames
-        const numbers = partialMatchesArray.map(filename => {
-            const match = filename.match(/(\d+)$/);
-            return match ? parseInt(match[1], 10) : null;
-        });
-
-        // Find the maximum number
-        const maxNumber = Math.max(...numbers);
-
-        // Calculate the next number
-        const nextNumber = maxNumber + 1;
-
-        // Pad the next number with zeros and set the fixed length to 6
-        const paddedNextNumber = String(nextNumber).padStart(3, '0');
-
-        console.log('Next number with padded zeros and fixed length 3:', paddedNextNumber);
-
-        newNumber = paddedNextNumber
+    if (checkbox.checked) {
+        newNumber = manualSequencetext.value
     } else {
-        console.log(`No partial match '${varDocNumber_noNum}' found in the array.`);
-        newNumber = "001"
+        const PartialMatch = filelist.filter(item => item.includes(varDocNumber_noNum));
+
+        if (PartialMatch.length >=1) {
+            console.log(`Partial match '${varDocNumber_noNum}' found in the array.`);
+            var partialMatchesArray = PartialMatch.map(match => match.replace(/\.[^.]+$/, '').slice(0, -3));
+            console.log('Partial matches array:', partialMatchesArray);
+
+            // Extract the numbers from the filenames
+            const numbers = partialMatchesArray.map(filename => {
+                const match = filename.match(/(\d+)$/);
+                return match ? parseInt(match[1], 10) : null;
+            });
+
+            // Find the maximum number
+            const maxNumber = Math.max(...numbers);
+
+            // Calculate the next number
+            const nextNumber = maxNumber + 1;
+
+            // Pad the next number with zeros and set the fixed length to 6
+            const paddedNextNumber = String(nextNumber).padStart(3, '0');
+
+            console.log('Next number with padded zeros and fixed length 3:', paddedNextNumber);
+
+            newNumber = paddedNextNumber
+        } else {
+            console.log(`No partial match '${varDocNumber_noNum}' found in the array.`);
+            newNumber = "001"
+        }
     }
 
     const varDocNumber_NoSheetNumber = varDocNumber_noNum+"-"+newNumber
@@ -146,9 +165,21 @@ function generateDocName(){
 
     }else if(docTypeSelector.value === 'Document') {
         varDocNumber_Full = varDocNumber_noNum+"-"+newNumber
+        newDrawingNumber = "00"
+
     }
 
-    console.log('New Document Number: ', varDocNumber_Full);
+    if(docTypeSelector.value === 'Document'){
+        varDocNumber_Full = ContractCode.value+"-"+LocationCode.value+"-"+vFunction.value+"-"+DocTypeDocument.value+"-"+newNumber
+
+        ACCFileName = ContractCode.value+"-"+LocationCode.value+"-"+vFunction.value+"-"+DocTypeDocument.value+"-00-00-"+newNumber+"-"+newDrawingNumber
+    }else if(docTypeSelector.value === 'Drawing') {
+        varDocNumber_Full = ContractCode.value+"-"+LocationCode.value+"-"+DocTypeDrawing.value+"-"+SubjectDiscipline.value+"-"+OriginatorCode.value+"-"+newNumber+"-"+newDrawingNumber
+
+        ACCFileName = ContractCode.value+"-"+LocationCode.value+"-00-"+DocTypeDocument.value+"-"+SubjectDiscipline.value+"-"+OriginatorCode.value+"-"+newNumber+"-"+newDrawingNumber
+    }
+    console.log('New Client Document Number: ', varDocNumber_Full);
+    console.log('New ACC Document Number: ', ACCFileName);
     document.getElementById("DocNumber").value = varDocNumber_Full.toString()
 
 
@@ -630,6 +661,7 @@ function populateDropdown(data) {
 
     // Add a default option
     const defaultOption = document.createElement('option');
+    defaultOption.value = "";
     defaultOption.text = 'Select a classification';
     dropdown.add(defaultOption);
 

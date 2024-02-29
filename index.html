@@ -88,12 +88,36 @@
                               <select class="form-dropdown" id="Originator_input" name="" data-component="ProjectRole" aria-label="Originator">
                               </select> </div>
                           </li>
+                          <li class="form-line docGeneratorDrawing" data-type="control_dropdown" id="id_5"><label class="form-label form-label-top form-label-auto" id="label_5" for="input_5" aria-hidden="false"> Is your file an additional sheet </label>
+                            <input type="checkbox" id="checkbox1">
+                          </li>
+                          <script>
+                            document.addEventListener('DOMContentLoaded', function() {
 
-                            <li class="form-line" ><label class="form-label form-label-top form-label-auto" id="label_5" for="input_5" aria-hidden="false"> Sequence Code and Sheet Numbers will be auto generated </label>
-                              <div class="form-input-wide" data-layout="full">
-                                </div>
+                            // Get references to the checkbox and the other element
+                                                           
+                                // Add event listener to the checkbox
+                                checkbox.addEventListener('change', function() {
+                                    // If checkbox is checked, display the other element; otherwise, hide it
+                                    if (checkbox.checked) {
+                                      manualSequence.style.display = 'block'; // Display the other element
+                                    } else {
+                                      manualSequence.style.display = 'none'; // Hide the other element
+                                    }
+                                });
+                              })
+                          </script>
+                          <li class="form-line" data-type="control_dropdown" id="manualSequence"><label class="form-label form-label-top form-label-auto" id="label_5" for="input_5" aria-hidden="false"> Please enter sequence number of existing file </label>
+                            <input type="text" id="manualSequencetext">
                           </li>
                         </ul>
+                        <ul class="form-step1 docGenerator fullwidth">
+                          <li class="form-line fullwidth" ><label class="form-label form-label-top form-label-auto" id="label_5" for="input_5" aria-hidden="false"> Sequence Code and Sheet Numbers will be auto generated </label>
+                            <div class="form-input-wide" data-layout="full">
+                              </div>
+                        </li>
+                        
+                      </ul>
                     <div class="form-step1 docGenerator">
                       <!-- Generate Button -->
                       <div id="cid_2" class="form-button" data-layout="full">
@@ -152,12 +176,42 @@
                           <label class="form-label form-label-top form-label-auto" id="label_State" for="input_Status" aria-hidden="false"> State* </label>
                           <select class="form-dropdown" id="input_State">
                             <option value="">Select a state...</option>
-                            <option value="In Progress">In Progress</option>
-                            <option value="Preliminary">Preliminary</option>
-                            <option value="Shared">Shared</option>
-                            <option value="Published">Published</option>
-                            <option value="Archived">Archived</option>
-
+                            
+                            <script>
+                              const list = [
+                                  "Work In Progress",
+                                  "Shared - at WIP",
+                                  "Superseded - WIP",
+                                  "Superseded - Shared at WIP",
+                                  "Obsolete",
+                                  "Superseded - Rejected in Check",
+                                  "Superseded - Rejected in Review",
+                                  "Superseded - Rejected in Approve",
+                                  "Shared - for Co-ordination",
+                                  "Shared - for Information",
+                                  "Shared - for Comment",
+                                  "Shared - For review and Approval",
+                                  "Shared AP to LAP Review Approve",
+                                  "Superseded - Shared",
+                                  "Superseded - Rejected by Doc Con",
+                                  "Superseded - Rejected by LAP",
+                                  "Shared",
+                                  "Shared - For Client Approval",
+                                  "Shared -  AP Accepted",
+                                  "Published",
+                                  "Archived"
+                              ];
+                              
+                              const dropdown = document.getElementById('input_State');
+                              
+                              // Add options for each item in the list
+                              list.forEach(item => {
+                                  const option = document.createElement('option');
+                                  option.value = item;
+                                  option.text = item;
+                                  dropdown.add(option);
+                              });
+                              </script>
                           </select>
                         </li>
                         <li>
