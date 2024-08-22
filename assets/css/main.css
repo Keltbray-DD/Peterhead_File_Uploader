@@ -460,3 +460,14 @@ input[type="submit"]:active {
       .docGeneratorDocument{
         display: none;
       }
+      .fa-regular{
+        display: flex;
+        float: right;
+        margin-right: 10px;
+        margin-top: 5px;
+        cursor: pointer;
+        color: #3498db;
+      }
+      .fa-regular:hover{
+        opacity: 50%;
+      }

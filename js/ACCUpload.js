@@ -640,7 +640,7 @@ async function getItemDetails(AccessToken){
     }
 
 async function postCustomItemDetails(AccessToken){
-    //console.log("SD",$("#input_StatusDesc").val())
+
     let Classification
     if($("#input_Classification").val()){
         Classification = $("#input_Classification").val()
